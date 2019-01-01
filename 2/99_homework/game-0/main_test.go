@@ -68,3 +68,11 @@ func TestGame0(t *testing.T) {
 	}
 
 }
+
+func initGame() interface{} {
+	return 0
+}
+
+func handleCommand(command string) string  {
+	return ""
+}
