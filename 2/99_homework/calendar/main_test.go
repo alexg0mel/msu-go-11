@@ -56,18 +56,10 @@ type NewCalendar struct {
 func (n NewCalendar) CurrentQuarter() int  {
 	month :=n.currData.Month()
 	switch month.String() {
-	case "January": return 1
-	case "February": return 1
-	case "March": return 1
-	case "April": return 2
-	case "May": return 2
-	case "June": return 2
-	case "July": return 3
-	case "August": return 3
-	case "September": return 3
-	case "October": return 4
-	case "November": return 4
-	case "December": return 4
+	case "January", "February","March": return 1
+	case "April", "May", "June": return 2
+	case "July", "August", "September": return 3
+	case "October", "November", "December": return 4
 	}
 	return 0
 
