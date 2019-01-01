@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package session;
+
+// ИД сессии - тот что у пользователя в куках
+message SessionID {
+  string sessionID = 1;
+}
+
+// даныные юзера, которые лежат в сессии
+message Session {
+  string login = 1;
+  string useragent = 2;
+}
+
+// сервис проверки авторизации
+service AuthChecker {
+    // создаёт сессию - принимает данные юзера, возвращает ID вессии
+    rpc CreateSession (Session) returns (SessionID) {}
+    // проверяет сессию - принимает ID сессии из куки - возвращает данные юзера
+    rpc CheckSession (SessionID) returns (Session) {}
+}
+

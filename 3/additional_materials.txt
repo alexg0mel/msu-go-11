@@ -1,0 +1,13 @@
+Материалы для дополнительного чтения:
+https://golang.org/doc/effective_go.html - это основной источник тайного знаняи по конструкциям языка
+
+
+https://blog.golang.org/race-detector
+https://blog.golang.org/pipelines
+https://blog.golang.org/advanced-go-concurrency-patterns
+https://blog.golang.org/go-concurrency-patterns-timing-out-and
+https://talks.golang.org/2012/concurrency.slide#1
+Язык программирования Go, Алан А. А. Донован, Брайан У. Керниган - глава 8
+
+Видео:
+https://www.youtube.com/watch?v=5buaPyJ0XeQ - классное выступление Dave Cheney про функции первого класса и использование их с горутинами, очень рекомендую, оно небольшое

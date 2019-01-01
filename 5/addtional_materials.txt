@@ -1,0 +1,16 @@
+https://golang.org/pkg/database/sql/
+https://github.com/golang/go/wiki/SQLInterface
+http://go-database-sql.org/
+https://astaxie.gitbooks.io/build-web-application-with-golang/
+https://github.com/thewhitetulip/web-dev-golang-anti-textbook/
+https://codegangsta.gitbooks.io/building-web-apps-with-go/content/
+
+https://godoc.org/github.com/go-sql-driver/mysql
+https://godoc.org/github.com/lib/pq
+https://godoc.org/github.com/bradfitz/gomemcache/memcache
+https://godoc.org/github.com/garyburd/redigo/redis
+https://godoc.org/gopkg.in/mgo.v2
+http://goinbigdata.com/how-to-build-microservice-with-mongodb-in-golang/
+http://jinzhu.me/gorm/
+http://motion-express.com/blog/gorm:-a-simple-guide-on-crud
+https://godoc.org/github.com/jinzhu/gorm

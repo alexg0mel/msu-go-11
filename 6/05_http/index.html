@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Todo List</title>
+    <style>
+        html, body {
+            background-color: #f0f0f0;
+        }
+
+        .root {
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        .item {
+            padding: 20px 40px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12);
+            font-family: -apple-system, BlinkMacSystemFont, Helvetica;
+            margin: 5px 0;
+            background-color: #ffffff;
+            border-radius: 3px;
+        }
+
+        .important {
+            border: 1px solid #cc0000;
+        }
+
+        .title {
+            display: inline-block;
+        }
+
+        .done {
+            border: none;
+            background-color: #f7f7f7;
+            color: #dddddd;
+        }
+
+        .form {
+            display: block;
+            margin: 0 auto;
+            width: 700px;
+        }
+
+        .input {
+            border: 1px solid #eee;
+            height: 30px;
+            font-size: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            border: 1px solid #f7f7f7;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 8px 15px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+        .input {
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<form class="form">
+    <input class="input" name="title" type="text">
+    <button type="submit" class="button">Add Todo</button>
+</form>
+<div class="root">
+</div>
+<script>
+    const root = document.querySelector('.root');
+    function updateTodos() {
+        fetch('/todos/', {mode: 'same-origin'})
+            .then(response => response.json())
+            .then(json => {
+                root.innerHTML = `
+                ${json.map((item, index) => {
+                    return `
+                        <div class="item${item.done ? ' done' : ''}">
+                            <div class="title">
+                                ${item.name}
+                            </div>
+                            <button type="button" class="button${item.done ? ' hidden' : ''}" data-id="${index}">
+                                Done
+                            </button>
+                        </div>
+                    `;
+                }).join(' ')}
+            `;
+            });
+    }
+
+    root.addEventListener('click', (event) => {
+        if (event.target.dataset.id) {
+            fetch(`/todos/${event.target.dataset.id}`, {method: 'PUT'})
+                .then(() => {
+                    updateTodos();
+                })
+        }
+    });
+
+    document.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        let title = event.target.elements['title'].value;
+        fetch(`/todos/`, {method: 'POST', json: true, body: JSON.stringify({name: title, done: false})})
+            .then(() => {
+                updateTodos();
+                event.target.reset();
+            })
+    });
+
+    updateTodos();
+
+</script>
+</body>
+</html>

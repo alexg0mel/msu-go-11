@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Todo List</title>
+    <style>
+        html, body {
+            background-color: #f0f0f0;
+        }
+        .root {
+            width: 700px;
+            margin: 0 auto;
+        }
+        .item {
+            padding: 20px 40px;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.12);
+            font-family: -apple-system, BlinkMacSystemFont, Helvetica;
+            margin: 5px 0;
+            background-color: #ffffff;
+            border-radius: 3px;
+        }
+        .important {
+            border: 1px solid #cc0000;
+        }
+        .title {
+            display: inline-block;
+        }
+        .done {
+            border: none;
+            background-color: #f7f7f7;
+            color: #dddddd;
+        }
+        .form {
+            display: inline;
+        }
+        .button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="root">
+        {{range $index, $value := .}}
+            <div class="item{{if eq .Done true}} done{{end}}">
+                <div class="title">{{.Name}}</div>
+                {{if IsNotDone .}}
+                    <form action="/" method="post" class="form">
+                        <input type="hidden" name="id" value="{{$index}}"/>
+                        <button type="submit" class="button">Done</button>
+                    </form>
+                {{end}}
+            </div>
+        {{end}}
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #joke {
+            display: block;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+            padding: 20px;
+            border-radius: 3px;
+            border: 1px solid #aaaaaa;
+            width: 500px;
+            text-align: center;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+<div id="joke">Тут будет шутка</div>
+<script>
+    const ws = new WebSocket('ws://127.0.0.1:8081/');
+    const container = document.getElementById('joke');
+    ws.onmessage = (message) => {
+        container.innerText = message.data;
+    }
+</script>
+</body>
+</html>

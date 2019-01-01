@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+*.exe
+4/06_bot/bin
+4/06_bot/pkg
+.vagrant
