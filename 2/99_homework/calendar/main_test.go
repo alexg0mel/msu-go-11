@@ -29,7 +29,8 @@ func TestCurrentQuarter(t *testing.T) {
 
 	for _, test := range cases {
 		parsed, _ := time.Parse("2006-01-02", fmt.Sprintf("2015-%s-15", test.month))
-		calendar := NewCalendar(parsed)
+//		calendar := NewCalendar(parsed)
+		calendar := NewCalendar{parsed}
 		actual := calendar.CurrentQuarter()
 		if actual != test.quarter {
 			t.Error("Month:", test.month,
@@ -37,4 +38,37 @@ func TestCurrentQuarter(t *testing.T) {
 				"Actual Quarter:", actual)
 		}
 	}
+}
+
+//type NewCalendar time.Time
+//
+//func (nc NewCalendar) CurrentQuarter() int  {
+//	return  1; // такой вариант  тип от time.Time - не понял как вызвать методы что есть в Time
+//	           // поэтому изменил немного в тесте... Или там ошибка или я чето не догнал...
+//}
+
+
+type NewCalendar struct {
+	currData time.Time
+}
+
+
+func (n NewCalendar) CurrentQuarter() int  {
+	month :=n.currData.Month()
+	switch month.String() {
+	case "January": return 1
+	case "February": return 1
+	case "March": return 1
+	case "April": return 2
+	case "May": return 2
+	case "June": return 2
+	case "July": return 3
+	case "August": return 3
+	case "September": return 3
+	case "October": return 4
+	case "November": return 4
+	case "December": return 4
+	}
+	return 0
+
 }
