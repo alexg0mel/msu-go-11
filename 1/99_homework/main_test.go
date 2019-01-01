@@ -2,8 +2,60 @@ package main
 
 import (
 	"reflect"
+	"strconv"
 	"testing"
 )
+
+func ReturnInt() int  {
+	return 1
+}
+
+func ReturnFloat() float32  {
+	return 1.1
+}
+
+func ReturnIntArray() [3]int  {
+	return [3]int {1,3,4}
+}
+
+func ReturnIntSlice() []int  {
+	return []int {1,2,3}
+}
+
+func IntSliceToString(in []int) string  {
+	var res string
+	for _, el:=range in{
+		res+=strconv.Itoa(el)
+	}
+	return  res
+}
+
+func MergeSlices(in_float []float32, in_int[] int32) []int {
+	var res []int
+	for _, el1 := range in_float{
+		res = append(res, int(el1))
+	}
+	for _, el2:= range in_int{
+		res = append(res, int(el2))
+	}
+	return  res
+}
+
+func GetMapValuesSortedByKey(inp map[int]string) []string {
+	var res [] string
+	var max,min,i int
+
+	for i= range inp{
+		if i > max { max = i}
+		if min==0 || i < min  {min = i}
+	}
+
+	for i=min; i<=max; i++{
+		e,q:= inp[i]
+		if(q) {res = append(res,e)}
+	}
+	return res
+}
 
 func TestReturnInt(t *testing.T) {
 	if ReturnInt() != 1 {
