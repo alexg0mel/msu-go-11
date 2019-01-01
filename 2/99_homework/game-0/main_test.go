@@ -69,10 +69,47 @@ func TestGame0(t *testing.T) {
 
 }
 
+
 func initGame() interface{} {
 	return 0
 }
 
 func handleCommand(command string) string  {
 	return ""
+}
+
+type room struct {
+	name string
+	message string
+	closed bool
+	furnitures []furniture
+	tasks []task
+	link_with_rooms []*room
+}
+
+type inventory struct {
+	active bool
+	things []thing
+}
+
+type thing struct {
+	name string
+	can_activate_inv bool
+}
+
+type furniture struct {
+	name string
+	pname string //имя вместе с предлогом  в/на
+	things []thing
+}
+
+type task struct {
+	name string
+}
+
+
+
+type gamer struct {
+	inventory
+	in_room *room
 }
