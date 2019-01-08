@@ -4,8 +4,8 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"sync/atomic"
-	"time"
 )
 
 type atomicCounter struct {
@@ -26,8 +26,8 @@ func main() {
 
 	// Если запустить этот код с ключом race, можно заметить, что мы никак не гарантируем
 	// Завершение всех работ, для того, чтобы гарантии были, стоит использовать WaitGroup
-	// var wg sync.WaitGroup
-	// wg.Add(100)
+	var wg sync.WaitGroup
+	wg.Add(100)
 	for i := 0; i < 100; i++ {
 		go func(no int) {
 			// Важно отметить, что в рамках этого цикла, управление между
@@ -37,11 +37,11 @@ func main() {
 				counter.Add(1)
 				//runtime.Gosched()
 			}
-			//wg.Done()
+			wg.Done()
 		}(i)
 	}
 
-	time.Sleep(time.Second)
-	// wg.Wait()
+	//time.Sleep(time.Second)
+	wg.Wait()
 	fmt.Println(counter.Value())
 }

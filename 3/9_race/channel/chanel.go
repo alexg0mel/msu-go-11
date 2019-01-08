@@ -87,7 +87,7 @@ func main() {
 	for i := 0; i < 10; i++ {
 		go func() {
 			// Каждая из которых, производит операции с аккаунтом
-			for j := 0; j < 10; j++ {
+			for j := 0; j < 100; j++ {
 				// Иногда снимает деньги
 				if j%2 == 1 {
 					acc.Withdraw(50)
@@ -100,6 +100,8 @@ func main() {
 	}
 	fmt.Scanln()
 	// Теперь баланс всегда будет сходиться в 0
+	fmt.Println(acc.Balance())
+	fmt.Scanln()
 	fmt.Println(acc.Balance())
 
 }
